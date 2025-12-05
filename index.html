@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aniruddha Dhondiram Gaikwad | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio website of Aniruddha Dhondiram Gaikwad, Computer Engineering student at PCCOE Pune." />
+
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-light: #e3f2fd;
+      --bg: #0f172a;
+      --card-bg: #0b1120;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent: #22c55e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1f2937, #020617);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .nav-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      display: inline-block;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 16px;
+      font-size: 0.9rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 32px;
+      align-items: center;
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #bfdbfe;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #60a5fa, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .highlight {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #2563eb);
+      color: #ffffff;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    /* Hero Card */
+    .hero-card {
+      background: radial-gradient(circle at top left, #1e293b, #020617);
+      border-radius: 24px;
+      padding: 20px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: #bbf7d0;
+      background: rgba(21, 128, 61, 0.2);
+    }
+
+    .status-pill span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-card-main {
+      margin-top: 6px;
+    }
+
+    .hero-name {
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-role {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat-box {
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      text-align: left;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .stat-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .hero-card-footer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+    }
+
+    /* Sections */
+    section {
+      margin-top: 36px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .section-title span {
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 18px;
+      padding: 18px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      margin-bottom: 14px;
+    }
+
+    /* Education */
+    .edu-item + .edu-item {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.5);
+    }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+    }
+
+    .edu-degree {
+      font-weight: 600;
+    }
+
+    .edu-year {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .edu-college {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .edu-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.8rem;
+      color: var(--text-main);
+    }
+
+    /* Contact */
+    .contact-item {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+    }
+
+    .contact-item span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-right: 4px;
+    }
+
+    a {
+      color: #93c5fd;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        ANIRUDDHA
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div>
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Computer Engineering Student · PCCOE Pune
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span>Aniruddha Dhondiram Gaikwad</span>
+        </h1>
+        <p class="hero-subtitle">
+          Aspiring computer engineer focused on building strong fundamentals
+          in programming, data structures, and modern web development.
+        </p>
+
+        <p class="hero-meta">
+          <span class="highlight">Career Objective:</span><br />
+          To secure a challenging position as a computer engineering student
+          where I can effectively contribute my skills and enhance my learning
+          in a dynamic environment.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Contact Me</a>
+          <a href="#education" class="btn-ghost">View Education</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-header">
+          <div>Currently in B.Tech · 2024–2028</div>
+          <div class="status-pill">
+            <span></span> Open to opportunities
+          </div>
+        </div>
+
+        <div class="hero-card-main">
+          <div class="hero-name">Aniruddha Dhondiram Gaikwad</div>
+          <div class="hero-role">Computer Engineering Student · PCCOE Pune</div>
+
+          <div class="hero-stats">
+            <div class="stat-box">
+              <div class="stat-label">First Year CGPA</div>
+              <div class="stat-value">8.45</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">HSC Percentage</div>
+              <div class="stat-value">80.33%</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">MHT-CET Percentile</div>
+              <div class="stat-value">98.94</div>
+            </div>
+          </div>
+
+          <div class="hero-card-footer">
+            <div class="pill">C · C++ · Python</div>
+            <div class="pill">Learning DSA & Web Dev</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title"><span>Education</span></h2>
+      <p class="section-subtitle">
+        Academic journey and performance till date.
+      </p>
+
+      <div class="card">
+        <div class="edu-item">
+          <div class="edu-header">
+            <div class="edu-degree">B.Tech in Computer Engineering</div>
+            <div class="edu-year">(2024 – 2028)</div>
+          </div>
+          <div class="edu-college">
+            Pimpri Chinchwad College of Engineering, Pune
+          </div>
+          <div class="edu-meta">First Year CGPA: 8.45</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-header">
+            <div class="edu-degree">HSC (12th)</div>
+            <div class="edu-year">2023</div>
+          </div>
+          <div class="edu-college">Creative College, Baramati</div>
+          <div class="edu-meta">
+            Percentage: 80.33% &nbsp;|&nbsp; MHT-CET Percentile: 98.94
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-header">
+            <div class="edu-degree">SSC (10th)</div>
+            <div class="edu-year">2021</div>
+          </div>
+          <div class="edu-college">
+            Someshwar Vidyalaya, Someshwar Nagar
+          </div>
+          <div class="edu-meta">Percentage: 89.40%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title"><span>Technical Skills</span></h2>
+      <p class="section-subtitle">
+        Core programming languages and areas I am currently exploring.
+      </p>
+
+      <div class="card skills-grid">
+        <div>
+          <h3>Programming Languages</h3>
+          <div class="tag-list">
+            <span class="tag">C</span>
+            <span class="tag">C++</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div>
+          <h3>Currently Learning</h3>
+          <div class="tag-list">
+            <span class="tag">Data Structures & Algorithms</span>
+            <span class="tag">Web Development</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+      <h2 class="section-title"><span>Certifications</span></h2>
+      <p class="section-subtitle">
+        Courses completed to strengthen my fundamentals.
+      </p>
+
+      <div class="card">
+        <ul style="list-style: disc; padding-left: 20px; font-size: 0.95rem;">
+          <li>
+            Completed online courses in <strong>OOPs in C++</strong> and
+            <strong>Python</strong>.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Hobbies -->
+    <section id="hobbies">
+      <h2 class="section-title"><span>Hobbies & Interests</span></h2>
+      <p class="section-subtitle">
+        Activities that keep me active, creative, and balanced.
+      </p>
+
+      <div class="card">
+        <div class="tag-list">
+          <span class="tag">Swimming</span>
+          <span class="tag">Listening to Songs</span>
+          <span class="tag">Listening to Bhajans</span>
+          <span class="tag">Playing Kabaddi</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title"><span>Contact</span></h2>
+      <p class="section-subtitle">
+        Feel free to reach out for internships, projects, or collaborations.
+      </p>
+
+      <div class="card">
+        <p class="contact-item">
+          <span>Mobile:</span> +91 8766673320
+        </p>
+        <p class="contact-item">
+          <span>Email:</span>
+          <a href="mailto:gaikwadaniruddha21@gmail.com">
+            gaikwadaniruddha21@gmail.com
+          </a>
+        </p>
+        <p class="contact-item">
+          <span>Location:</span> Pune, Maharashtra, India
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Aniruddha Dhondiram Gaikwad · Portfolio
+    </footer>
+  </main>
+
+  <script>
+    // current year in footer
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
