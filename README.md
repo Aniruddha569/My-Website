@@ -1,2 +1,2 @@
 # My-Website
-simple website
+simple website of Aniruddha Gaikwad maked for practice purpose
